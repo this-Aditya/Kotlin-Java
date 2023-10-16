@@ -1,0 +1,11 @@
+Modern cryptography solves three problems:
+
+1. Confidentiality -> Using encryption/decryption
+2. Data Integrity -> Using Cryptographic Hashing Algorithms.
+3. Authenticity -> Using the TrustManagers and KeyManagers( In case of Secure HTTP connection, up to my knowlege as of know)
+
+Hashing ----------- Produced the SHA-256 HASH digest of the message
+
+Symmetric Encryption
+
+Using the KeyGenerator

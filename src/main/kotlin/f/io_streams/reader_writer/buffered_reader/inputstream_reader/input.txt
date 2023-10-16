@@ -1,0 +1,8 @@
+I am currently learning android development.
+Earlier I thought start working on spring too, but now my opinion is to just delay that too for some time.
+As I want to be first well-equipped with the beauty of android, and then I'll proceed with spring.
+I think I am majorly missing on some topics which can't be skipped like coroutines, flows, testing, dependency injection,
+ktor etc. even-though I have idea of them and have built some projects using these too, but I need some more confidence
+that's why I am giving some more time to them.
+The best place from where I can learn these topics is the pRMT new version, which I think is going to be live soon
+making use of all these things and learning from the code written by Joris is a boon for me, he is an awesome architect.
