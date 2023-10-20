@@ -2,6 +2,7 @@ package a.test
 
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import java.io.IOException
+import java.lang.NumberFormatException
 import java.util.AbstractMap
 import java.util.concurrent.TimeUnit
 
@@ -113,7 +114,7 @@ fun main() {
 
 //    val time = TimeUnit.SECONDS.toMillis(5)
 //    println(time)
-    println(test2(7))
+    println(test2(9))
 }
 
 open class A(val a: Int) {
@@ -147,19 +148,27 @@ open class View(val a: String) {}
 
 
 fun test2(param: Int): String? {
-    if (param > 5 ) {
         try {
-            test1()
+            test3(param)
         } catch (ex: Exception) {
             ex.printStackTrace()
         }
+    try {
+        test1()
+    } catch (ex: Exception) {
+        ex.printStackTrace()
     }
-    return null
+    return "Function completed"
 }
 
 @Throws(IOException::class)
 fun test1(): String {
-    return "test1"
+throw IOException()}
+
+fun test3(param: Int) {
+    if (param > 8) {
+        throw NumberFormatException()
+    }
 }
 
 
