@@ -14,7 +14,8 @@ fun main() {
 //    fromDemoBean()
 //    jsonArrayFromString()
 //    jsonArrayFromArray()
-    toHTTPHeader()
+//    toHTTPHeader()
+    jsonArrayFromStringTwo()
 }
 
 fun fromJsonObj() {
@@ -93,4 +94,19 @@ fun toHTTPHeader() {
 
     val httpStr = HTTP.toString(jo)
     println(httpStr)
+}
+
+fun jsonArrayFromStringTwo() {
+    val jsonString = "[{\"name\":\"John Doe\", \"age\":\"22\", \"city\":\"Chicago\"}, true, 17, \"Julie\", {\"city\":\"Kuchaman\"}]"
+    val jsonArray = JSONArray(jsonString)
+    println("Complete Array-> $jsonArray")
+    val firstObj = jsonArray.getJSONObject(0)
+    val second = jsonArray.getBoolean(1)
+    val third = jsonArray.getInt(2)
+    val fourth = jsonArray.getString(3)
+    val fifth = jsonArray.getJSONObject(4)
+    val jsonList: MutableList<Any> = mutableListOf(firstObj, second, third, fourth, fifth)
+    jsonList.forEach {
+        println(it)
+    }
 }
