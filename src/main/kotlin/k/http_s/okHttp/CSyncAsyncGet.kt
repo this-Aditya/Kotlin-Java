@@ -4,7 +4,7 @@ import k.http_s.okHttp.BHttpCache.Companion.DASH
 import okhttp3.*
 import java.io.IOException
 
-class SyncAsyncGet {
+class CSyncAsyncGet {
     fun synchronousRequest() {
         val request: Request = Request.Builder()
             .url(URL)
@@ -29,6 +29,35 @@ class SyncAsyncGet {
             .build()
         client.newCall(request).enqueue(callback)
         println("Check statement on 'ASYNC': If this is printed before the network response, it means that this request is non blocking otherwise it is blocking: WARNING(may not be necessary, might be possible that the request may take less time but using this as metric here!!)")
+    }
+
+    fun reqResHeaders() {
+        val request = Request.Builder()
+            .url("https://api.github.com/repos/square/okhttp/issues")
+            .header("User-Agent", "OkHttp Headers.java")
+            .header("Accept", "application/json; q=0.5")
+            .addHeader("Accept", "application/vnd.github.v3+json")
+            .build()
+
+//        request.headers.forEach (::println)
+
+        client.newCall(request).execute().use { response ->
+            if (!response.isSuccessful) throw IOException("Unexpected code $response")
+
+            val server: String? = response.header("Server")
+            val date: String? = response.header("Date")
+            val vary: List<String> = response.headers("Vary")
+            val vary2: String? = response.header("Vary")
+            println("Server: $server")
+            println("Date: $date")
+            println("Vary: $vary")
+            println("Vary2: $vary2")
+            println()
+            println(DASH)
+            println()
+            println("Headers: ")
+            response.headers.forEach(::println)
+        }
     }
 
     companion object {
@@ -56,7 +85,9 @@ class CallbackImpl() : Callback {
 
 fun main() {
     // Synchronous request:
-    val syncAsync = SyncAsyncGet()
+    val syncAsync = CSyncAsyncGet()
 //    syncAsync.synchronousRequest()
-    syncAsync.asyncRequest()
+//    syncAsync.asyncRequest()
+
+    syncAsync.reqResHeaders()
 }
