@@ -114,8 +114,21 @@ fun main() {
 
 //    val time = TimeUnit.SECONDS.toMillis(5)
 //    println(time)
-    println(test2(9))
+//    println(test2(9))
+    val ref: (String) -> Int? = ::demoFun
+    val x = ref("45789345")
+    println(x)
+
 }
+
+fun demoFun(age: String): Int? {
+    return try {
+        age.toInt()
+    } catch (ex: NumberFormatException) {
+        null
+    }
+}
+
 
 open class A(val a: Int) {
     open val variable: Int = 3
