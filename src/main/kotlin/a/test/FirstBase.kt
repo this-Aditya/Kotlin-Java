@@ -81,7 +81,7 @@ fun main() {
 //    println(x)
 //    println(FirstBase::class.java)
 //    println(SecondBase::class.java)
-//    val baseUrl = "https://stage.jhfgzdkhggrhzgd.net".toHttpUrlOrNull()
+    val baseUrl = "https://stage.jhfgzdkhggrhzgd.net".toHttpUrlOrNull()
 //    println(baseUrl)
 //    val x = FirstBase.Three() // can be called as it is an static class
 //    val y = FirstBase.Two() can't be called as it is not an static class
