@@ -82,6 +82,11 @@ fun main() {
 //    println(FirstBase::class.java)
 //    println(SecondBase::class.java)
     val baseUrl = "https://stage.jhfgzdkhggrhzgd.net".toHttpUrlOrNull()
+    println(baseUrl!!.port)
+    val strippedPath = "/management/portal/studies/subjects"
+    val builderUrl = baseUrl.newBuilder(strippedPath)
+    val finalUrl = builderUrl?.build();
+    println(finalUrl)
 //    println(baseUrl)
 //    val x = FirstBase.Three() // can be called as it is an static class
 //    val y = FirstBase.Two() can't be called as it is not an static class
@@ -115,9 +120,9 @@ fun main() {
 //    val time = TimeUnit.SECONDS.toMillis(5)
 //    println(time)
 //    println(test2(9))
-    val ref: (String) -> Int? = ::demoFun
-    val x = ref("45789345")
-    println(x)
+//    val ref: (String) -> Int? = ::demoFun
+//    val x = ref("45789345")
+//    println(x)
 
 }
 
