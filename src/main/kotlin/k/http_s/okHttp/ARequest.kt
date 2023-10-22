@@ -3,6 +3,8 @@ package k.http_s.okHttp
 import okhttp3.*
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.RequestBody.Companion.toRequestBody
+import java.io.IOException
+import javax.net.ssl.SSLSocketFactory
 
 class ARequest {
     fun simpleGetExample(url: String): String? {
@@ -10,6 +12,15 @@ class ARequest {
             .url(url)
             .build()
         okHttpClient.newCall(request).execute().use { response ->
+            return response.body?.string()
+        }
+    }
+
+    fun simpleGetExampleWithPinner(url: String): String? {
+        val request = Request.Builder()
+            .url(url)
+            .build()
+        certificatePinnedClient.build().newCall(request).execute().use { response ->
             return response.body?.string()
         }
     }
@@ -39,7 +50,19 @@ class ARequest {
         okHttpClient.newCall(request).execute().use { response ->
             return response.body!!.string()
         }
+    }
 
+    fun getServerCertInfo(url: String) {
+        val request = Request.Builder()
+            .url(url)
+            .build()
+
+        okHttpClientBuilder.build().newCall(request).execute().use {  response ->
+            if (!response.isSuccessful) throw IOException("$response")
+            else{
+                response.handshake?.peerCertificates?.forEach(::println)
+            }
+        }
     }
 
     fun bowlingJson(player1: String, player2: String): String {
@@ -59,6 +82,9 @@ class ARequest {
     companion object{
         val okHttpClient = OkHttpClient()
         val okHttpClientBuilder = OkHttpClient.Builder()
+        val certificatePinnedClient = OkHttpClient.Builder()
+            .certificatePinner(CertificatePinner.Builder()
+                .add("raw.githubusercontent.com", "sha256/qlJvUaRP4/Oodg/x84EZ52Ulu8y9eUHh++IjI8zJ2bc").build())
         val JSON: MediaType = "application/json".toMediaType()
     }
 }
@@ -72,13 +98,18 @@ fun main() {
 //    val response = request.simplePostRequest("http://www.roundsapp.com/post", postBody)
 //    println(response)
 
-    val requestHeaders: Headers = request.requestHeader("https://raw.github.com/square/okhttp/master/README.md")
-    println("Request Headers: ")
-    requestHeaders.forEach(::println)
+//    val requestHeaders: Headers = request.requestHeader("https://raw.github.com/square/okhttp/master/README.md")
+//    println("Request Headers: ")
+//    requestHeaders.forEach(::println)
+//
+//    println()
+//
+//    val responseHeaders: Headers = request.responseHeaders("https://raw.github.com/square/okhttp/master/README.md")
+//    println("Response Headers: ")
+//    responseHeaders.forEach(::println)
 
-    println()
+//    request.simpleGetExampleWithPinner("https://raw.githubusercontent.com/square/okhttp/master/README.md")
+//        .also (::println)
 
-    val responseHeaders: Headers = request.responseHeaders("https://raw.github.com/square/okhttp/master/README.md")
-    println("Response Headers: ")
-    responseHeaders.forEach(::println)
+    request.getServerCertInfo("https://raw.githubusercontent.com/square/okhttp/master/README.md")
 }
