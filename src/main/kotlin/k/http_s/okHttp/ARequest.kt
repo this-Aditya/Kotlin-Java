@@ -65,6 +65,27 @@ class ARequest {
         }
     }
 
+    fun simpleFormPost(url: String) {
+        val formBody = FormBody.Builder()
+            .add("search", "Jurassic Park")
+            .build()
+        val request = Request.Builder()
+            .url(url)
+            .post(formBody)
+            .build()
+
+        okHttpClient.newCall(request)
+            .execute().use { response ->
+                if (!response.isSuccessful) throw  IOException("$response")
+                else {
+                    println("Response Body: ")
+                    println()
+                    println()
+                    println(response.body?.string())
+                }
+            }
+    }
+
     fun bowlingJson(player1: String, player2: String): String {
         return (
                 "{\"winCondition\":\"HIGH_SCORE\"," +
@@ -111,5 +132,6 @@ fun main() {
 //    request.simpleGetExampleWithPinner("https://raw.githubusercontent.com/square/okhttp/master/README.md")
 //        .also (::println)
 
-    request.getServerCertInfo("https://raw.githubusercontent.com/square/okhttp/master/README.md")
+//    request.getServerCertInfo("https://raw.githubusercontent.com/square/okhttp/master/README.md")
+request.simpleFormPost("https://en.wikipedia.org/w/index.php");
 }

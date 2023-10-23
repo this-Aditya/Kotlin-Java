@@ -81,12 +81,16 @@ fun main() {
 //    println(x)
 //    println(FirstBase::class.java)
 //    println(SecondBase::class.java)
-    val baseUrl = "https://stage.jhfgzdkhggrhzgd.net".toHttpUrlOrNull()
-    println(baseUrl!!.port)
-    val strippedPath = "/management/portal/studies/subjects"
-    val builderUrl = baseUrl.newBuilder(strippedPath)
-    val finalUrl = builderUrl?.build();
-    println(finalUrl)
+//    val baseUrl = "https://stage.jhfgzdkhggrhzgd.net".toHttpUrlOrNull()
+//    println(baseUrl!!.port)
+//    val strippedPath = "https://stage.jhfgzdkhggrhzgd.net/management/portal/studies/subjects"
+//    val builderUrl = baseUrl.newBuilder(strippedP ath)
+//    val finalUrl = builderUrl?.build();
+//    println(finalUrl)
+//    var x = 2
+//    val y = ++x
+//    println(y)
+
 //    println(baseUrl)
 //    val x = FirstBase.Three() // can be called as it is an static class
 //    val y = FirstBase.Two() can't be called as it is not an static class
@@ -123,7 +127,7 @@ fun main() {
 //    val ref: (String) -> Int? = ::demoFun
 //    val x = ref("45789345")
 //    println(x)
-
+//checkXTExecution()
 }
 
 fun demoFun(age: String): Int? {
@@ -131,6 +135,12 @@ fun demoFun(age: String): Int? {
         age.toInt()
     } catch (ex: NumberFormatException) {
         null
+    }
+}
+
+fun checkXTExecution() {
+    println("Hello there!").also {
+        println("I am intellij")
     }
 }
 
