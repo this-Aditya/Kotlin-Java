@@ -128,6 +128,15 @@ fun main() {
 //    val x = ref("45789345")
 //    println(x)
 //checkXTExecution()
+    test4(45).also {
+        println(it)
+    }.let {
+        StringBuilder(it).append(": A Mathematical number").toString()
+    }.apply {
+         this.substring(1, this.length - 3)
+    }.also {
+        println(it)
+    }
 }
 
 fun demoFun(age: String): Int? {
@@ -199,6 +208,8 @@ fun test3(param: Int) {
     }
 }
 
-
+fun test4(ip: Int): String {
+    return ip.toString()
+}
 
 

@@ -12,10 +12,10 @@ public class Annotations {
         an.deprecatedMethod();
     }
 
-    @SuppressWarnings("rawtypes unchecked")
-    void myMethod() {
-        Box<Integer> bi = new Box();
-    }
+//    @SuppressWarnings("rawtypes unchecked")
+//    void myMethod() {
+//        Box<Integer> bi = new Box();
+//    }
 
     /**
      * @deprecated This method is deprecated because I want to know how the deprecation works,
