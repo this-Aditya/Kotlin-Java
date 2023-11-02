@@ -35,6 +35,6 @@ public class BoxDemo {
 
         Map<String, List<String>> m1 = new HashMap<String, List<String>>();
         Map<String, List<String>> m2 = new HashMap<>();
-        Map<String, List<String>> m3 = new HashMap(); // Unchecked assignment: 'java.util.HashMap' to 'java.util.Map<java.lang.String,java.util.List<java.lang.String>>'
+//        Map<String, List<String>> m3 = new HashMap(); // Unchecked assignment: 'java.util.HashMap' to 'java.util.Map<java.lang.String,java.util.List<java.lang.String>>'
     }
 }

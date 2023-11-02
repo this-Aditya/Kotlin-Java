@@ -1,5 +1,8 @@
 package org.example.b.generics;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     Box<String> box = new Box<>();
     OrderedPair<String, Integer> op1 = new OrderedPair<String, Integer>("Token-Type", 1);
@@ -38,6 +41,11 @@ public class Main {
         System.out.println("There are "+ num+ " elements in array greater than 5");
 
     }
+
+//    static void checking() {
+//        List<String> str = new ArrayList<>();
+//        List<Object> obj = str;
+//    }
 }
 
 
