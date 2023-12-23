@@ -1,10 +1,6 @@
 package a.test
 
-import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import java.io.IOException
-import java.lang.NumberFormatException
-import java.util.AbstractMap
-import java.util.concurrent.TimeUnit
 
 class FirstBase(
     val y: String = "yjh"
@@ -212,4 +208,18 @@ fun test4(ip: Int): String {
     return ip.toString()
 }
 
+fun no() {
+    val needsPermissions: MutableSet<String> = hashSetOf()
+}
+
+
+
+fun test5() {
+    fun f(): String = "Test"
+    val foo = ::f as () -> String
+    fun bar(doSomething: () -> String) { doSomething() }
+
+    val baz = bar(::f)  // OK
+    val baz2 = bar(foo) // Error
+}
 
