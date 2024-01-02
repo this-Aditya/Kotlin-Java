@@ -10,13 +10,17 @@ class People internal constructor(var name: String?, var age: Int) {
             return false
         }
         val people = obj as People
-        return age == people.age && name == people.name
+        return age == people.age && name.equals(people.name)
     }
+
+    companion object {
+        @JvmStatic
 
         fun main(args: Array<String>) {
             val one = People(null, 21)
             val two = People(null, 21)
             println(one == two)
         }
+    }
     }
 
