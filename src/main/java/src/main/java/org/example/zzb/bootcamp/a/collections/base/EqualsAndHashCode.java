@@ -75,9 +75,4 @@ class Person {
     public int hashCode() {
         return Objects.hash(firstName, lastName, age);
     }
-
-    @Override
-    protected void finalize() throws Throwable {
-        System.out.println("Finalized");
-    }
 }
