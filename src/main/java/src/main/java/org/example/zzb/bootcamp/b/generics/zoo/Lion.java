@@ -1,5 +1,5 @@
 package org.example.zzb.bootcamp.b.generics.zoo;
 
-public class Lion implements Animal {
+public class Lion extends Animal {
     String name = "Lion";
 }

@@ -29,4 +29,11 @@ class Cage <E extends Animal> {
     public void setSecond(E second) {
         this.second = second;
     }
+
+    boolean areCompatible() {
+        return first.getType().equals(second.getType());
+        /*
+        * We can access the properties of Animal class because of the
+        * `? extends Animal` */
+    }
 }

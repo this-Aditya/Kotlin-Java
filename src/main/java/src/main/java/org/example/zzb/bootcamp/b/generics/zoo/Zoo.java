@@ -18,4 +18,12 @@ public class Zoo {
         Cage<Monkey> constructorCage = new Cage<>(new Monkey(), new Monkey());
 
     }
+
+    // Making use of upper bound wildcard
+    private boolean isAnimalsCompatible(Cage<? extends Animal> cage) {
+        Animal first = cage.getFirst();
+        Animal second = cage.getSecond();
+
+        return first.getType().equals(second.getType());
+    }
 }
