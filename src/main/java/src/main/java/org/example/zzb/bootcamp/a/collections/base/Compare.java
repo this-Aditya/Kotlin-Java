@@ -40,7 +40,7 @@ class Test {
 
         // using the total ordering here!! passing the weight comparator!!
 
-        WeightComparator wc = new WeightComparator();
+//        WeightComparator wc = new WeightComparator();
 //        students.sort(wc);
 
         // Passing the implementation of comparator directly!!

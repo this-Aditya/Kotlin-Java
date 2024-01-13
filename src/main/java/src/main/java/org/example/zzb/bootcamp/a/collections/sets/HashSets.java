@@ -40,11 +40,9 @@ class Student {
         this.section = section;
     }
 
-    private Mac sha256;
-
     {
         try {
-            sha256 = Mac.getInstance("HmacSHA256");
+            Mac sha256 = Mac.getInstance("HmacSHA256");
 
             // Generate a random key using KeyGenerator
             KeyGenerator keyGen = KeyGenerator.getInstance("HmacSHA256");

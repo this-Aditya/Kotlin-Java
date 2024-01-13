@@ -56,9 +56,9 @@ class Person {
         System.out.println(p1.hashCode());
         System.out.println(p2.hashCode());
 
-        for (int i = 0; i < 1000000000; i++) {
-            new Person("ngs","dfushn", new Date(), 34);
-        }
+//        for (int i = 0; i < 1000000000; i++) {
+//            new Person("ngs","dfushn", new Date(), 34);
+//        }
     }
 
     @Override
