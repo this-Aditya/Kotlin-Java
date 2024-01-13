@@ -1,39 +1,52 @@
 package org.example.zzb.bootcamp.b.generics.zoo;
 
-class Cage <E extends Animal> {
+import org.example.zzb.bootcamp.b.generics.zoo.activities.Eats;
+import org.example.zzb.bootcamp.b.generics.zoo.activities.Runs;
+import org.example.zzb.bootcamp.b.generics.zoo.activities.Sleeps;
+
+class Cage <E extends Animal & Eats & Sleeps & Runs> {
 
     public Cage(E first, E second) {
-        this.first = first;
-        this.second = second;
+        this.animal1 = first;
+        this.animal2 = second;
     }
 
     public Cage() {
 
     }
 
-    private E first;
-    private E second;
+    private E animal1;
+    private E animal2;
 
-    public E getFirst() {
-        return first;
+    public E getAnimal1() {
+        return animal1;
     }
 
-    public void setFirst(E first) {
-        this.first = first;
+    public void setAnimal1(E animal1) {
+        this.animal1 = animal1;
     }
 
-    public E getSecond() {
-        return second;
+    public E getAnimal2() {
+        return animal2;
     }
 
-    public void setSecond(E second) {
-        this.second = second;
+    public void setAnimal2(E animal2) {
+        this.animal2 = animal2;
     }
 
     boolean areCompatible() {
-        return first.getType().equals(second.getType());
+        return animal1.getType().equals(animal2.getType());
         /*
         * We can access the properties of Animal class because of the
         * `? extends Animal` */
+    }
+
+    void feedAnimal() {
+        animal1.eat();
+        animal1.sleep();
+        animal2.eat();
+        animal2.sleep();
+        // We are able to access these methods just because the type of Animal `E` is also
+        // extending the Eats and Sleep
     }
 }
