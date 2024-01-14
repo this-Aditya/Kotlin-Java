@@ -1,4 +1,4 @@
-package org.example.zzb.bootcamp.b.generics.wildcards;
+package org.example.zzb.bootcamp.b.generics.upper_bound_wildcards;
 
 import java.util.ArrayList;
 import java.util.List;

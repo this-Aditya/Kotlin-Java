@@ -1,4 +1,4 @@
-package org.example.zzb.bootcamp.a.collections.concurrent;
+package org.example.zzb.bootcamp.a.collections.concurrentmaps;
 
 import java.util.Collections;
 import java.util.HashMap;

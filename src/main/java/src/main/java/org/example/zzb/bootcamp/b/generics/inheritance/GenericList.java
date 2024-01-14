@@ -1,8 +1,5 @@
 package org.example.zzb.bootcamp.b.generics.inheritance;
 
-import org.example.zzb.bootcamp.b.generics.zoo.Animal;
-import org.example.zzb.bootcamp.b.generics.zoo.Monkey;
-
 public class GenericList {
     public static void main(String[] args) {
 //        GenericClass<Object> gc = new GenericClass<String>("Hello");  Gives error

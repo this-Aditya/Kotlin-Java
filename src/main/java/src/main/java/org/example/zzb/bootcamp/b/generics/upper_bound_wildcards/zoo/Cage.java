@@ -1,8 +1,8 @@
-package org.example.zzb.bootcamp.b.generics.zoo;
+package org.example.zzb.bootcamp.b.generics.upper_bound_wildcards.zoo;
 
-import org.example.zzb.bootcamp.b.generics.zoo.activities.Eats;
-import org.example.zzb.bootcamp.b.generics.zoo.activities.Runs;
-import org.example.zzb.bootcamp.b.generics.zoo.activities.Sleeps;
+import org.example.zzb.bootcamp.b.generics.upper_bound_wildcards.zoo.activities.Eats;
+import org.example.zzb.bootcamp.b.generics.upper_bound_wildcards.zoo.activities.Runs;
+import org.example.zzb.bootcamp.b.generics.upper_bound_wildcards.zoo.activities.Sleeps;
 
 class Cage <E extends Animal & Eats & Sleeps & Runs> {
 
