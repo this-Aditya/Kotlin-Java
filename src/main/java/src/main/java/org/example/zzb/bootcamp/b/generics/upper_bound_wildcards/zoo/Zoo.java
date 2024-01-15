@@ -39,8 +39,11 @@ public class Zoo {
 
     static void staticMethodWithGenerics() {
         Monkey aalu = new Monkey();
+        aalu.setType("Medium");
         Monkey kaalu = new Monkey();
+        kaalu.setType("Medium");
         Lion sher = new Lion();
+        sher.setType("Large");
 
         boolean monkeyPairs = Cage.areStaticCompatible(aalu, kaalu);
         boolean monkeyLion = Cage.areStaticCompatible(kaalu, sher);
