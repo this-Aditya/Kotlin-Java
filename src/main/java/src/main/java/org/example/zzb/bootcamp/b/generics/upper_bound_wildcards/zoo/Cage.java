@@ -49,4 +49,8 @@ class Cage <E extends Animal & Eats & Sleeps & Runs> {
         // We are able to access these methods just because the type of Animal `E` is also
         // extending the Eats and Sleep
     }
+
+    static <E extends Animal>boolean areStaticCompatible(E animal1, E animal2) {
+        return animal1.getType().equals(animal2.getType());
+    }
 }

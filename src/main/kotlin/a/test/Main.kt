@@ -1,5 +1,5 @@
 package a.test
 
-class Person {
+fun main() {
 
 }

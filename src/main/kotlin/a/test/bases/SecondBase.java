@@ -1,4 +1,4 @@
-package a.test;
+package a.test.bases;
 
 public class SecondBase {
     public static void main(String[] args) {

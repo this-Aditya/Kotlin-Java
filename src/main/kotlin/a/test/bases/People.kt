@@ -1,4 +1,4 @@
-package a.test
+package a.test.bases
 
 
 class People internal constructor(var name: String?, var age: Int) {

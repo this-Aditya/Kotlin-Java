@@ -19,7 +19,8 @@ public class Zoo {
 //        Cage<Animal > cage = new Cage<>(new Monkey(), new Lion());// But no error here!!
 
         Cage<Monkey> constructorCage = new Cage<>(new Monkey(), new Monkey());
-
+        // Using generics in static methods!!
+        staticMethodWithGenerics();
     }
 
     // Making use of upper bound wildcard
@@ -34,5 +35,17 @@ public class Zoo {
     static void understandingMultipleExtensions() {
 //        Cage<Shark> sharkCage = new Cage<Shark>(); // Don't works because Sharks is not extending the Runs
 //        Cage<Ant> antCage = new Cage<Ant>(); // Again ant doesn't extends the Animal class!!
+    }
+
+    static void staticMethodWithGenerics() {
+        Monkey aalu = new Monkey();
+        Monkey kaalu = new Monkey();
+        Lion sher = new Lion();
+
+        boolean monkeyPairs = Cage.areStaticCompatible(aalu, kaalu);
+        boolean monkeyLion = Cage.areStaticCompatible(kaalu, sher);
+
+        System.out.println("Are Monkey pairs compatible: "+ monkeyPairs); // true
+        System.out.println("Are Lions, Monkey compatible: "+ monkeyLion); // false
     }
 }

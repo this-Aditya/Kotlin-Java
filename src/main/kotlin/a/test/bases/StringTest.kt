@@ -1,6 +1,4 @@
-package a.test
-
-import com.sun.jdi.Value
+package a.test.bases
 
 fun main() {
     val lon: Long = 768356238769834
