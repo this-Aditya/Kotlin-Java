@@ -1,15 +1,30 @@
 package org.example.zzb.bootcamp.c.concurrency;
 
 import java.util.ArrayList;
-import java.util.IllformedLocaleException;
 import java.util.List;
 import java.util.Scanner;
+
+/**
+ * This program explains the functions of threads efficiently.
+ * For clear concepts, provide input in the following format:
+ *
+ * @Thread_1 --30000
+ * @Thread_2 --20000
+ * @Thread_3 --20000
+ * @Thread_4 --20000
+ * @Thread_5 --20000
+ *
+ * @join Just take special care while using join,
+ * as in this case don't forgot to expel <b>Main</b> and <b>Status-Tracker</b> thread as they will not
+ * be terminated automatically, they just can be terminated automatically. That's why we are only joining for the
+ * threads which can be terminated automatically.
+ */
 
 public class PrimeFinder {
 
     public static void main(String[] args) {
         List<Thread> threads = new ArrayList<>();
-        Thread.currentThread().setName("\nMain Thread");
+        Thread.currentThread().setName("Main Thread");
         threads.add(Thread.currentThread());
         threads.add(new Thread("Created Thread!"));
         Thread statusTracker = new Thread(() -> {
@@ -17,6 +32,10 @@ public class PrimeFinder {
                 try {
                     Thread.sleep(5000);
                     for (Thread thread : threads) {
+                        if (thread.getName().equals("Main Thread")) {
+                            System.out.println("\n"+thread.getName() + ": " + thread.getState());
+                            continue;
+                        }
                         System.out.println(thread.getName() + ": " + thread.getState());
                     }
                 } catch (InterruptedException e) {
@@ -29,19 +48,24 @@ public class PrimeFinder {
         statusTracker.start();
         efficientPrimeFinder(threads);
     }
+
     public static void efficientPrimeFinder(List<Thread> threads) {
 
         int i = 0;
 
-        Thread joinThread = new Thread("Join Thread");
-        while(true) {
+//        Thread joinThread = new Thread("Join Thread");
+        while (true) {
             Scanner s = new Scanner(System.in);
             System.out.print("\nI can tell you nth prime number, enter the n...");
             int n = s.nextInt();
-            if (n == 0) break; // Entering 0 is the exit condition!!
+            if (n == 0) {// Entering 0 is the exit condition!!
+                System.out.println("Not taking further responses--Waiting for remaining work to complete");
+                waitForThreads(threads);
+                break;
+            }
             i++;
             Thread th = new Thread(() -> {
-                    int number = PrimeNumberUtil.calculatePrime(n);
+                int number = PrimeNumberUtil.calculatePrime(n);
 //                    if (Thread.currentThread().getName().equals("Thread:3")) {
 //                        threads.get(threads.size() - 2).interrupt();
 //                    }
@@ -50,28 +74,40 @@ public class PrimeFinder {
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
-                System.out.println("\nResult from thread: "+Thread.currentThread().getName()+". "+n+"th prime number: "+ number+".");
-            }, "Thread:"+i);
+                System.out.println("\nResult from thread: " + Thread.currentThread().getName() + ". " + n + "th prime number: " + number + ".");
+            }, "Thread:" + i);
             th.setDaemon(true);
             threads.add(th);
             th.start();
         }
-        try {
-            threads.get(0).join();
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
+    }
+
+    private static void waitForThreads(List<Thread> threads) {
+        for (Thread th: threads) {
+            if (th.getName().equals("Status Tracker") || th.getName().equals("Main Thread")){
+                System.out.println("Skipping joins for thread:  "+th.getName());
+                continue;
+            }
+            try {
+                System.out.println("Joining thread: "+ th.getName()+" --");
+                th.join();
+                System.out.println("Completed work for thread: "+ th.getName());
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
         }
     }
+
     public static void inefficientPrimeFinder() {
         int number;
 
-        while(true) {
+        while (true) {
             Scanner s = new Scanner(System.in);
             System.out.print("\nI can tell you nth prime number, enter the n...");
             int n = s.nextInt();
             if (n == 0) break; // Entering 0 is the exit condition!!
             number = PrimeNumberUtil.calculatePrime(n); // Super inefficient!!
-            System.out.println("Value of "+n+"th prime number is "+ number+".");
+            System.out.println("Value of " + n + "th prime number is " + number + ".");
         }
     }
 }
