@@ -27,6 +27,8 @@ public class PrimeFinder {
         Thread.currentThread().setName("Main Thread");
         threads.add(Thread.currentThread());
         threads.add(new Thread("Created Thread!"));
+        // One way to stop the thread when the main application thread completes its execution is
+        // making this thread a Deamon thread. Other way is just to interrupt it.
         Thread statusTracker = new Thread(() -> {
             while (true) {
                 try {
@@ -39,12 +41,12 @@ public class PrimeFinder {
                         System.out.println(thread.getName() + ": " + thread.getState());
                     }
                 } catch (InterruptedException e) {
-                    System.out.println("\nThread: " + Thread.currentThread().getName() + ", Interrupted!!");
+                    System.out.println("\nStatus Tracker thread interrupted, stopping it!!");
                 }
             }
         }, "Status Tracker");
         threads.add(statusTracker);
-        statusTracker.setDaemon(true);
+//        statusTracker.setDaemon(true)
         statusTracker.start();
         efficientPrimeFinder(threads);
     }
@@ -83,15 +85,30 @@ public class PrimeFinder {
     }
 
     private static void waitForThreads(List<Thread> threads) {
+        int i = 0;
         for (Thread th: threads) {
             if (th.getName().equals("Status Tracker") || th.getName().equals("Main Thread")){
                 System.out.println("Skipping joins for thread:  "+th.getName());
+                i++;
+//                threads.removeIf(thread -> thread.getName().equals("Main Thread")); // Will through ConcurrentModificationException
                 continue;
             }
             try {
                 System.out.println("Joining thread: "+ th.getName()+" --");
                 th.join();
+                i++;
                 System.out.println("Completed work for thread: "+ th.getName());
+                if (i == threads.size()) {
+                    Thread threadToInterrupt = threads.stream()
+                            .filter(thread -> thread.getName().equals("Status Tracker"))
+                            .findFirst().orElse(null);
+                    if (threadToInterrupt != null) {
+                        threadToInterrupt.interrupt();
+                    } else {
+                        System.out.println("Got null");
+                    }
+                }
+
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
