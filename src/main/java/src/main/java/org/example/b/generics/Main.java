@@ -1,8 +1,5 @@
 package org.example.b.generics;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Main {
     Box<String> box = new Box<>();
     OrderedPair<String, Integer> op1 = new OrderedPair<String, Integer>("Token-Type", 1);

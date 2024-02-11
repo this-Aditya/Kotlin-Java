@@ -3,16 +3,11 @@ package org.example.zzb.bootcamp.a.collections.sets;
 import javax.crypto.KeyGenerator;
 import javax.crypto.Mac;
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-
-import java.nio.ByteBuffer;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
-
-import static javax.xml.crypto.dsig.SignatureMethod.HMAC_SHA256;
 
 public class HashSets {
     public static void main(String[] args) {

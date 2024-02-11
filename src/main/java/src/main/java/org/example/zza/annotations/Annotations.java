@@ -1,7 +1,5 @@
 package org.example.zza.annotations;
 
-import org.example.b.generics.*;
-
 public class Annotations {
 
     public static void main(String[] args) {

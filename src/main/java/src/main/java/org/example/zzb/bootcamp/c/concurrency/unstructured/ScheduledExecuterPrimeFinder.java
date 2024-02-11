@@ -3,7 +3,10 @@ package org.example.zzb.bootcamp.c.concurrency.unstructured;
 import org.example.zzb.bootcamp.c.concurrency.PrimeNumberUtil;
 
 import java.util.Scanner;
-import java.util.concurrent.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 public class ScheduledExecuterPrimeFinder {
 

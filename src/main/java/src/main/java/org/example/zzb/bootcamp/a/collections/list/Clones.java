@@ -1,7 +1,6 @@
 package org.example.zzb.bootcamp.a.collections.list;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class Clones {
 

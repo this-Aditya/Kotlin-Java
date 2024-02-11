@@ -1,6 +1,8 @@
 package org.example.zzb.bootcamp.a.collections.base;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
 
 class Student implements Comparable<Student>{
     String name;

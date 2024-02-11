@@ -2,7 +2,6 @@ package org.example.b.generics;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 class Sup<T> {
     public Sup() {

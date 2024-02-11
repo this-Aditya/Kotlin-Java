@@ -1,6 +1,9 @@
 package org.example.zzb.bootcamp.a.collections.concurrent_queue;
 
-import java.util.concurrent.*;
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.SynchronousQueue;
 
 public class ProducerConsumerDemo {
     public static void main(String[] args) {

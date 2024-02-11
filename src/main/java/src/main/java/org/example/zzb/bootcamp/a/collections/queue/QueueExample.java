@@ -1,6 +1,5 @@
 package org.example.zzb.bootcamp.a.collections.queue;
 
-import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class QueueExample {
