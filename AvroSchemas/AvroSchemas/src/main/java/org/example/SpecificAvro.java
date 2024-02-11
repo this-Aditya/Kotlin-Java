@@ -1,10 +1,14 @@
 package org.example;
 
 import example.avro.User;
+import org.apache.avro.Schema;
 import org.apache.avro.file.DataFileReader;
 import org.apache.avro.file.DataFileWriter;
+import org.apache.avro.generic.GenericData;
+import org.apache.avro.generic.GenericRecord;
 import org.apache.avro.io.DatumReader;
 import org.apache.avro.io.DatumWriter;
+import org.apache.avro.specific.SpecificData;
 import org.apache.avro.specific.SpecificDatumReader;
 import org.apache.avro.specific.SpecificDatumWriter;
 
@@ -24,7 +28,13 @@ public class SpecificAvro {
         User aditya = new User("Aditya", 3, "Sky-Blue");
 
         serializeUsers(abhay, aditi, aditya);
-        deserializeUsers(new File("src/main/java/org/files/users.avro"));
+        SpecificData sd = aditya.getSpecificData();
+        deserializeUsers(new File("src/main/java/org/files/users.avro"), abhay.getSchema(), sd);
+
+        Schema classSchema = User.getClassSchema();
+        System.out.println();
+//        System.out.println(classSchema);
+//        System.out.println(aditya.getSchema());
     }
 
     /**
@@ -45,8 +55,14 @@ public class SpecificAvro {
         }
     }
 
-    private static void deserializeUsers(File file) {
-        DatumReader<User> userDatumReader = new SpecificDatumReader<>(User.class);
+    private static void deserializeUsers(File file, Schema schema, GenericData data) {
+        @SuppressWarnings("unchecked")
+                DatumReader<User> userDatumReader = data.createDatumReader(schema);
+        /*
+        alternate for above statement:
+                DatumReader<User> userDatumReader = SpecificData.get().createDatumReader(schema);
+                DatumReader<User> userDatumReader = new SpecificDatumReader<>(User.class);
+         */
         try(DataFileReader<User> dataFileReader = new DataFileReader<>(file, userDatumReader)) {
             User user = null;
             while (dataFileReader.hasNext()) {
