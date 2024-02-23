@@ -1,4 +1,4 @@
-package org.example;
+package org.example.avro_first;
 
 
 import example.avro.User;

@@ -1,4 +1,4 @@
-package org.example;
+package org.example.avro_first;
 
 import example.avro.User;
 import org.apache.avro.Schema;
@@ -28,7 +28,7 @@ public class Test {
 
     private static void testClass() {
         try {
-            Class<?> test = Class.forName("org.example.Test");
+            Class<?> test = Class.forName("org.example.avro_first.Test");
             System.out.println(test);
             Test test1 = new Test();
             Method testArray = test.getMethod("testArray");
