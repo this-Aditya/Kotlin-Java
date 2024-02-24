@@ -1,0 +1,13 @@
+{
+  "namespace": "org.person.info",
+  "name": "Person",
+  "type": "record",
+  "fields": [
+    { "name": "name", "type": "string", "doc": "Name of the person." },
+    { "name": "age", "type": "int", "doc": "Age of the person." },
+    { "name": "bike_company", "type": ["null","string"], "doc": "Name of company of the bike person have, if exists." },
+    { "name": "bike_info", "type": ["null", "string"], "doc": "Information about the bike that the person have." },
+    { "name": "laptop", "type": "string", "doc": "Laptop of the person." },
+    { "name": "phone", "type": "string", "doc": "Smartphone of the person." }
+  ]
+}
