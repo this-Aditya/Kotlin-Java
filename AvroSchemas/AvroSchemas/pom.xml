@@ -12,7 +12,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <avro.version>1.8.2</avro.version>
+        <avro.version>1.11.3</avro.version>
         <kafka.version>0.11.0.1</kafka.version>
         <confluent.version>3.3.1</confluent.version>
     </properties>
@@ -35,6 +35,11 @@
             <groupId>org.apache.kafka</groupId>
             <artifactId>kafka-clients</artifactId>
             <version>${kafka.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.codehaus.jackson</groupId>
+            <artifactId>jackson-core-asl</artifactId>
+            <version>1.9.13</version>
         </dependency>
         <dependency>
             <groupId>io.confluent</groupId>
