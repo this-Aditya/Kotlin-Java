@@ -15,7 +15,8 @@ public class SchemaTest {
     public static void main(String[] args) {
 //        Schema schema = Schema.create(Schema.Type.STRING);
 //        testSchema();
-        findSchemaUtils();
+//        findSchemaUtils();
+        testSchema();
     }
 
     static void findSchemaUtils() {
@@ -36,7 +37,9 @@ public class SchemaTest {
 
     static void testSchema() {
         try {
-            Schema schema = new Schema.Parser().parse(new File("src/main/resources/avro/User.avsc"));
+            Schema schema = new Schema.Parser().parse(new File("src/main/resources/schemas/User.avsc"));
+            System.out.println(SpecificData.get().createDatumWriter(schema));
+            System.out.println(schema);
             Schema.Field field = schema.getFields().get(1);
             System.out.println(field);
             System.out.println(field.schema());

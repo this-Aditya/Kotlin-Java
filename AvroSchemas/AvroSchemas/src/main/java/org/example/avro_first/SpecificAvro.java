@@ -29,7 +29,7 @@ public class SpecificAvro {
 
         serializeUsers(abhay, aditi, aditya);
         SpecificData sd = aditya.getSpecificData();
-        deserializeUsers(new File("src/main/java/org/files/users.avro"), abhay.getSchema(), sd);
+        deserializeUsers(new File("src/main/resources/schemas/User.avro"), abhay.getSchema(), sd);
 
         Schema classSchema = User.getClassSchema();
         System.out.println();
@@ -42,10 +42,12 @@ public class SpecificAvro {
      */
     private static void serializeUsers(User abhay, User aditi, User aditya) {
         //
-        DatumWriter<User> userDatumWriter = new SpecificDatumWriter<>(User.class);
-        DataFileWriter<User> dataFileWriter = new DataFileWriter<>(userDatumWriter);
+//        DatumWriter<User> userDatumWriter = new SpecificDatumWriter<>(User.class);
         try {
-            dataFileWriter.create(abhay.getSchema(), new File("src/main/java/org/files/users.avro"));
+            Schema schema = new Schema.Parser().parse(new File("src/main/resources/schemas/User.avsc"));
+        DatumWriter userDatumWriter = SpecificData.get().createDatumWriter(schema);
+        DataFileWriter<User> dataFileWriter = new DataFileWriter<>(userDatumWriter);
+            dataFileWriter.create(abhay.getSchema(), new File("src/main/resources/schemas/User.avro"));
             dataFileWriter.append(abhay);
             dataFileWriter.append(aditi);
             dataFileWriter.append(aditya);
